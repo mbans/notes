@@ -1,0 +1,56 @@
+git diff --cached					-	what has been staged
+git status -s						-	summary of additions, modifications
+git add							-	will add new files as well as adding new content (modifications) to staging area
+git commit -a -m 'added new benchmarks' 		-	this will commit changes made on your branch WITHOUT the need to add to staging previously
+git log							-	view history log
+got log --stat						-	log with diffs
+git log --pretty=oneline
+git log --pretty=format:"%h - %an, %ar : %s"		
+git log --pretty=format:"%h %s" --graph			-	shows ASCII based branch merges
+git log --oneline --decorate				-	the 'decorate' will show the branch that HEAD is currently pointing to
+git reset HEAD CONTRIBUTING.md				-	resets any staged files i.e. reverts
+git checkout -- CONTRIBUTING.md				-	discards changed
+git remote -v						- 	view your remote servers, origin being the name of the host you CLONED the repo from
+git remote show origin					-       inspecting information about remote
+git fetch <remote-name>					-	fetches/gets data from remote project, after running fetch you will have reference to all branches from that remote which can be merged
+							-	if you 'clone' a remote then git auto adds 'origin' to be an alias for the repo.
+								Therefore 'git fetch origin' will fetch new work that been pushed to the server since you cloned it (or last fetched)
+git clone <remote>					-	pulls down content and sets up your MASTER branch to track the remote MASTER branch
+
+git branch -vv                                          - Shows local branches and what they are tracking
+
+
+===============================================================================================
+BRANCHING,PUSHING & PULLING
+===============================================================================================
+git pull                                                -       Fetches data from the server originally cloned and tries to merge into code your working on
+git branch testing					-	creates a branch
+git checkout testing					-	switches branch, HEAD will point to the new branch
+
+git branch -r						-	show all remote branches
+git branch -a						-	showa all local/remote branches
+git push origin <remote branch>				-       pushing local changes to the remote branch
+							-       the remote branch should be taken from the name provided when you do 									'git branch -a'
+								e.g. git push origin feature/myBranch
+								
+==============
+DELETE BRANCH 
+==============
+git branch -D branch_name                  - Delete local branch 
+git push origin --delete <branch_name>     - Delete remote branch
+git branch --track branch-name origin/branch-name    - Create a local branch "branch-name" to track remote branch "origin/branch-name"
+
+git remote show origin			- shows all remote/local branches configured for push/pull
+
+git push -u origin feature/PRIME-27742-sdma-exception-management-order       
+-- this is used to explicitly push to the remote branch in origin, this will be set thereafter
+
+--------------------------------------------------------------------------------------------------------------------------------
+Commit to wrong branch 		   -  https://stackoverflow.com/questions/2941517/how-to-fix-committing-to-the-wrong-git-branch
+--------------------------------------------------------------------------------------------------------------------------------
+1. To rollback one commit (make sure you note the commit's hash for the next step)
+git reset --hard HEAD^					 
+
+2. To pull that commit into a different branch:
+git checkout other-branch
+git cherry-pick COMMIT-HASH
